@@ -1,0 +1,12 @@
+{
+    "autoload":{
+         "psr-4":{
+            "App\\Controllers\\": "App/Controllers/",
+            "App\\Models\\": "App/Models/"
+         }
+    },
+    "require": {
+        "altorouter/altorouter": "^2.0",
+        "phpmailer/phpmailer": "^6.10"
+    }
+}
