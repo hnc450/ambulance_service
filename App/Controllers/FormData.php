@@ -9,9 +9,17 @@
         * @var array $datas :  tableau a stocker dans le cookie
        */
     
-        public static function souviens_toi_de_moi(string $cookie_name, array $datas):void
+        public static function souviens_toi_de_moi(string $cookie_name, array $datas , string $isActive)
         {
-           setcookie($cookie_name,serialize($datas),time() + 84600 * 60);
+          if(!empty($isActive))
+          {
+            setcookie($cookie_name,serialize($datas),time() + 84600 * 60);
+          }
+          else
+          {
+            return;
+          }
+     
         }
 
         public static function sign_in(array $datas, string $methode):void
@@ -57,35 +65,21 @@
              {
               $email = $datas['email'];
               $mdp = $datas['password'];
-              $user_exists = [];
-              //Database::executeQuery("SELECT * FROM users WHERE email = ?",$datas['email'])
+              $user_exists =  Database::QueryRequest("SELECT * FROM users  WHERE email='$email' AND mot_de_passe='$mdp'");
               var_dump(
-          
-                Database::QueryRequest("SELECT * FROM users WHERE email='$email'"),
-                Database::executeQuery("SELECT * FROM users WHERE email=:email AND mot_de_passe=:mdp",
-              [
-                ':email' => $email,
-                ':mdp' => $mdp
-              ])
+                Database::QueryRequest("SELECT * FROM users WHERE email='$email' AND mot_de_passe='$mdp'")
               );
-              $user_exists = Database::executeQuery("SELECT * FROM users WHERE email=:email AND mot_de_passe=:mdp",
-              [
-                ':email' =>$email,
-                ':mdp' => $mdp
-              ]);
               echo '<br/>'.count($user_exists);
 
               if(count($user_exists) > 0)
               {
-                die("Bon la c est bon");
+                //die("Bon la c est bon");
+                Database::QueryRequest("UPDATE users SET status=1 WHERE email='$email'");
                 $_SESSION['user'] = $user_exists;
-
-                if(!empty($datas['remeber']))
-                {
-                  FormData::souviens_toi_de_moi("Tokken",$datas);
-                }
-                
+                FormData::souviens_toi_de_moi("Tokken",$datas,$datas['remeber']?? '');
+                header("Location: /");
               }
+
               else
               {
                 die("veuillez creer un compte");
