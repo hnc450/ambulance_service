@@ -120,12 +120,6 @@
     <!-- Route -->
 
     <?php
-        echo $_SERVER['SCRIPT_FILENAME'];
-        echo "<br/>";
-        echo $_SERVER['SCRIPT_NAME'];
-        echo "<br/>";
-       echo $_SERVER['REQUEST_URI'];
-       echo "<br/>";
 
        if($_SERVER['REQUEST_URI'] === "/")
        {
