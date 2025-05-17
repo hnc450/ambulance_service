@@ -1,0 +1,89 @@
+/* responsive.css */
+
+/* Desktop First Approach */
+
+/* Large Devices (Desktops) */
+@media (max-width: 1200px) {
+    .container {
+        max-width: 960px;
+    }
+}
+
+/* Medium Devices (Tablets) */
+@media (max-width: 992px) {
+    .container {
+        max-width: 720px;
+    }
+    
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .testimonials-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .cta-box {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .cta-content {
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+}
+
+/* Small Devices (Mobile) */
+@media (max-width: 768px) {
+    .desktop-nav, .desktop-only {
+        display: none;
+    }
+    
+    .mobile-menu-btn {
+        display: block;
+    }
+    
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+    
+    .hero p {
+        font-size: 1rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+    }
+    
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Extra Small Devices */
+@media (max-width: 576px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .hero {
+        height: 500px;
+    }
+}

@@ -1,0 +1,156 @@
+/* services.css */
+
+/* Page Header */
+.page-header {
+    background-color: var(--primary);
+    color: var(--white);
+    padding: 60px 0;
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+.page-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+.page-header p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto;
+    opacity: 0.9;
+}
+
+/* Services Section */
+.services-section {
+    padding-bottom: 80px;
+}
+
+.service-card {
+    display: flex;
+    margin-bottom: 80px;
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.service-image {
+    flex: 1;
+    min-height: 300px;
+    overflow: hidden;
+}
+
+.service-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.service-card:hover .service-image img {
+    transform: scale(1.05);
+}
+
+.service-content {
+    flex: 1;
+    padding: 40px;
+    position: relative;
+}
+
+.service-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+.service-icon.red {
+    background-color: rgba(229, 57, 53, 0.1);
+    color: var(--danger);
+}
+
+.service-icon.blue {
+    background-color: rgba(33, 150, 243, 0.1);
+    color: var(--primary);
+}
+
+.service-icon.green {
+    background-color: rgba(76, 175, 80, 0.1);
+    color: var(--success);
+}
+
+.service-icon.purple {
+    background-color: rgba(156, 39, 176, 0.1);
+    color: var(--purple);
+}
+
+.service-content h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+.service-content p {
+    color: var(--gray);
+    margin-bottom: 20px;
+    line-height: 1.7;
+}
+
+.service-features {
+    margin-bottom: 30px;
+}
+
+.service-features li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.service-features li i {
+    color: var(--success);
+    margin-right: 10px;
+}
+
+/* CTA Section */
+.cta-section {
+    padding: 80px 0;
+    background-color: var(--light);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .service-card {
+        flex-direction: column;
+    }
+    
+    .service-card:nth-child(even) {
+        flex-direction: column;
+    }
+    
+    .service-image {
+        min-height: 250px;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-header {
+        padding: 40px 0;
+        margin-bottom: 40px;
+    }
+    
+    .page-header h1 {
+        font-size: 2rem;
+    }
+    
+    .service-content {
+        padding: 30px;
+    }
+    
+    .service-content h2 {
+        font-size: 1.5rem;
+    }
+}
