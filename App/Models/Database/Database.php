@@ -23,8 +23,7 @@
           {
            self::$connexion = new \PDO(self::$dns."=localhost:".self::$port.";dbname=".self::$database,self::$user,self::$password);
            self::$connexion->setAttribute(\PDO::ATTR_ERRMODE,\PDO::ERRMODE_EXCEPTION);
-           echo "connexion reussi";
-
+      
           }
           catch(\PDOException $exception)
           {
