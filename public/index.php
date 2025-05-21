@@ -18,24 +18,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AmbuService - Service de Location d'Ambulance</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href=".css/">
-
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/styles.css"> -
     <link rel="stylesheet" href="css/responsive.css"> 
-    
-    <?php if($_SERVER['REQUEST_URI'] === "/profile"): ?>
-      <link rel="stylesheet" href="./css/profile.css">
-    <?php endif?>
-  
+    <link rel="stylesheet" href="./css/profile.css">
     <script src="./js/main.js" defer></script>
     <script src="./js/tarifs.js" defer></script>
     <script src="./js/a-propos.js" defer></script>
     <script src="./js/commande.js" defer></script>
     <script src="./js/suivi.js" defer></script>
     <script src="./js/dashboard/main.js"></script>
-    <!-- <script src="./js/profile-script.js"></script> -->
-    <!-- <script src="./js/script.js"></script> -->
+     <script src="./js/profile-script.js"></script> 
+    <script src="./js/script.js"></script> 
 </head>
 <body>
     <!-- Header -->
@@ -117,7 +111,6 @@
         </nav>
     </div>
 
-    <!-- Route -->
 
     <?php
 
@@ -126,17 +119,10 @@
          require '../App/Views/home.php';
        }
         
-        //route en GET
         $routes->map('GET','/[a:name]',function($fichier){
           PageController::page($fichier);
         });
-
-        $routes->map('GET','/dashboard/[a:name]',function($menu){
-            echo var_dump($menu);
-            PageController::dashboard($menu);
-        });
       
-        // route en POST 
         $routes->map('POST','/login',function(){
             FormData::sign_in($_POST,$_SERVER['REQUEST_METHOD']);
         },'sign-in');
@@ -148,14 +134,8 @@
         },'nous-contactez');
 
         $routes->map('POST','/users/[i:id]',function($id){
-            // echo "supprimer l utilisateur avec l id: " . ($id['id']);
-            // die();
             User::supprimer_mon_compte($id['id']);
         });
-        $routes->map("POST",'/updateProfile/[i:id]',function($id){
-            
-        });
-
 
         $match = $routes->match();
 
