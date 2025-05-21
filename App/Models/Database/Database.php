@@ -1,5 +1,5 @@
 <?php
- 
+   
     class Database
     {
        private  static $connexion;
@@ -23,7 +23,6 @@
           {
            self::$connexion = new \PDO(self::$dns."=localhost:".self::$port.";dbname=".self::$database,self::$user,self::$password);
            self::$connexion->setAttribute(\PDO::ATTR_ERRMODE,\PDO::ERRMODE_EXCEPTION);
-      
           }
           catch(\PDOException $exception)
           {
@@ -41,23 +40,55 @@
          return self::$database;
        }
        
-       public static function QueryRequest(string $sql):array
+       public static function QueryRequest(string $sql,int $option)
        {
-         try
-         {
-            return self::$connexion->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+         switch($option){
+            case 1:
+               self::$connexion->query($sql);
+            break;
+               case 2:
+                  try
+                  {
+                     return self::$connexion->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+                  }
+                  catch(PDOException $exception)
+                  {
+                     die($exception->getMessage());
+                  }
+                  break;
+
+            case 3:
+                self::$connexion->query($sql);
+               break;
+
+            case 4:
+            break;
          }
-         catch(PDOException $exception)
-         {
-            die($exception->getMessage());
-         }
+
        }
 
-       public static function  executeQuery(string $sql,array $params)
+       public static function  executeQuery(string $sql,array $params,int $option)
        {
-          self::$statement = self::$connexion->prepare($sql);
-          self::$statement->execute($params);
-          return self::$statement->fetchAll(PDO::FETCH_ASSOC);
+         switch($option)
+         {
+            case 1:
+               self::$statement = self::$connexion->prepare($sql);
+               self::$statement->execute($params);
+            break;
+            
+            case 2:
+               self::$statement = self::$connexion->prepare($sql);
+               self::$statement->execute($params);
+               return self::$statement->fetchAll(\PDO::FETCH_ASSOC);
+               break;
+            case 3:
+               self::$statement = self::$connexion->prepare($sql);
+               self::$statement->execute($params);
+               break;
+            case 4:
+               break;
+         }
+
        }
     }
 ?>
